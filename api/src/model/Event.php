@@ -9,8 +9,8 @@
 final class Event{
 
     private $id;
-    private $start_date;
-    private $end_date;
+    private $start;
+    private $end;
     private $name;
     private $person;
 
@@ -36,7 +36,7 @@ final class Event{
      */
     public function getStartDate()
     {
-        return $this->start_date;
+        return $this->start;
     }
 
     /**
@@ -44,23 +44,23 @@ final class Event{
      */
     public function setStartDate($start_date)
     {
-        $this->start_date = $start_date;
+        $this->start = $start_date;
     }
 
     /**
      * @return mixed
      */
-    public function getEndDate()
+    public function getEnd()
     {
-        return $this->end_date;
+        return $this->end;
     }
 
     /**
-     * @param mixed $end_date
+     * @param mixed $end
      */
-    public function setEndDate($end_date)
+    public function setEnd($end)
     {
-        $this->end_date = $end_date;
+        $this->end = $end;
     }
 
     /**
@@ -72,11 +72,11 @@ final class Event{
     }
 
     /**
-     * @param mixed $location
+     * @param mixed $name
      */
-    public function setLocation($location)
+    public function setName($name)
     {
-        $this->location = $location;
+        $this->name = $name;
     }
 
     /**
