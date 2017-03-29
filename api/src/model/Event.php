@@ -11,8 +11,9 @@ final class Event{
     private $id;
     private $start_date;
     private $end_date;
-    private $location;
+    private $name;
     private $person;
+
 
     /**
      * @return mixed
@@ -65,9 +66,9 @@ final class Event{
     /**
      * @return mixed
      */
-    public function getLocation()
+    public function getName()
     {
-        return $this->location;
+        return $this->name;
     }
 
     /**
