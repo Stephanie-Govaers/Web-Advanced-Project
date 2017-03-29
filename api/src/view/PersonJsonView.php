@@ -1,7 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: steph
- * Date: 29/03/2017
- * Time: 14:47
- */
+class PersonJsonView{
+    public function convertPersonArrayToJson($person){
+        return json_encode($person);
+    }
+}

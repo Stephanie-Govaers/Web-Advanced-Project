@@ -1,4 +1,8 @@
-<?php namespace model;
+<?php
+
+require "../vendor/autoload.php";
+
+
 /**
  * Created by PhpStorm.
  * User: steph
