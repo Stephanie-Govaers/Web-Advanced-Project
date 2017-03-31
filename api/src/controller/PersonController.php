@@ -1,7 +1,5 @@
 <?php
 
-require "../model/PDOPersonRepository.php";
-require "../view/PersonJsonView.php";
 /**
  * Created by PhpStorm.
  * User: steph
@@ -21,5 +19,10 @@ class PersonController{
     public function handleFindPersonById($id){
         $person = $this->pdoPersonRepository->FindPersonById($id);
         return $this->personJsonView->convertPersonArrayToJson($person);
+    }
+
+    public function handleGetAllPersons(){
+        $personArray = $this->pdoPersonRepository->FindAllPersons();
+        return $this->personJsonView->convertPersonArrayToJson($personArray);
     }
 }

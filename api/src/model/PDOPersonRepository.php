@@ -14,12 +14,23 @@ class PDOPersonRepository{
     }
 
     public function FindPersonById($id){
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $statement = $this->pdo->prepare('SELECT * FROM Persons WHERE ID = :id');
         $statement->bindParam(':id',$id,PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
         return $statement->fetch();
+    }
+
+    public function FindAllPersons(){
+        $personArray = array();
+        $counter = 0;
+        $statement = $this->pdo->query('SELECT * FROM Persons');
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        foreach ($statement->fetch() as $person){
+            $personArray[$counter++] = $person;
+        }
+        return $personArray;
+
     }
 
 }
