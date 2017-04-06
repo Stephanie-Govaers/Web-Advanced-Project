@@ -8,5 +8,8 @@
  */
 class EventJsonView
 {
+    public function convertEventArrayToJson($event){
+        return json_encode($event);
+    }
 
 }

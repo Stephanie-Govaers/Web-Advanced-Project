@@ -3,5 +3,8 @@
     "psr-4": {
       "model\\":"src/model"
     }
+  },
+  "require": {
+    "altorouter/altorouter": "1.1"
   }
 }

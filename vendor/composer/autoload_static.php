@@ -20,11 +20,16 @@ class ComposerStaticInit1b406cd8fae747d6a82fb658ff56543c
         ),
     );
 
+    public static $classMap = array (
+        'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit1b406cd8fae747d6a82fb658ff56543c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit1b406cd8fae747d6a82fb658ff56543c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit1b406cd8fae747d6a82fb658ff56543c::$classMap;
 
         }, null, ClassLoader::class);
     }
