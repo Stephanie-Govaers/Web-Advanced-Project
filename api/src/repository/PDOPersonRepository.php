@@ -1,4 +1,7 @@
-<?php
+<?php namespace repository;
+use model\Person;
+use PDO;
+
 /**
  * Created by PhpStorm.
  * User: 11501253
@@ -10,7 +13,7 @@ class PDOPersonRepository{
 
     public function __construct($pdo)
     {
-        $this->pdo = new PDO($pdo);
+        $this->pdo = $pdo;
     }
 
     public function FindPersonById($id){
@@ -18,7 +21,16 @@ class PDOPersonRepository{
         $statement->bindParam(':id',$id,PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
-        return $statement->fetch();
+        $record=$statement->fetch();
+        // If the person was found
+        if ($record != false) {
+            $id = $record['id'];
+            $name = $record['name'];
+            $person = new Person();
+            $person->setId($id);
+            $person->setName($name);
+        }
+        return $person;
     }
 
     public function FindAllPersons(){

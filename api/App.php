@@ -1,6 +1,10 @@
 <?php
 
-require "../vendor/autoload.php";
+use controller\PersonController;
+use repository\PDOPersonRepository;
+use view\PersonJsonView;
+
+require "vendor/autoload.php";
 
 
 /**
@@ -10,37 +14,43 @@ require "../vendor/autoload.php";
  * Time: 14:30
  */
 
-$user = 'web62';
-$password = 'Quinn28122109';
-$database = 'web62_project';
-$hostname = '213.136.26.180:2222';
+$user = 'webproject_db';
+$password = 'user123';
+$database = 'webproject_db';
+$hostname = '213.136.26.180';
 $pdo = null;
+
 try {
-    $pdo = new PDO("mysql:host=$hostname;dbname=$database",
-        $user, $password);
+    // Setting up pdo
+    $pdo = new PDO("mysql:host=$hostname;dbname=$database", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION);
+
+    // Setting up objects
     $personPDORepository = new PDOPersonRepository($pdo);
     $personJsonView = new PersonJsonView();
     $personController = new PersonController(
-        $personPDORepository, $personJsonView);
+        $personJsonView, $personPDORepository);
+
+    // Setting up router
     $router = new AltoRouter();
-    $router->setBasePath('/api');
-    $router->map('GET','/persons/[i:id]',
-        function($id) use (&$personController) {
-            $personController->handleFindPersonById($id);
-        }
-    );
+    $router->setBasePath('/~user/api/App.php');
+
+    // Include the defined api routes
+    include('routes.php');
+
     $match = $router->match();
+
+    if ($match == false) {
+        print ($_SERVER['REQUEST_URI']);
+    }
+
+    // IF we have a route match and the target is callable, call the function
     if( $match && is_callable( $match['target'] ) ){
         call_user_func_array( $match['target'], $match['params'] );
     }
-} catch (Exception $e) {
-    var_dump($e);
-}
-$match = $router->match();
-if( $match && is_callable( $match['target'] ) ){
-    call_user_func_array( $match['target'], $match['params'] );
+} catch (Exception $ex) {
+    var_dump($ex);
 }
 
 

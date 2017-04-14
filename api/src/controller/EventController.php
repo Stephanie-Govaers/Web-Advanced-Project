@@ -1,4 +1,4 @@
-<?php
+<?php namespace controller;
 /**
  * Created by PhpStorm.
  * User: steph
@@ -10,7 +10,17 @@ class EventController{
 
     public function __construct($eventJsonView, $pdoEventRepository)
     {
-        $this->eventJsonView = new EventJsonView($eventJsonView);
-        $this->pdoEventRepository = new PDOEventRepository($pdoEventRepository);
+        $this->eventJsonView = $eventJsonView;
+        $this->pdoEventRepository = $pdoEventRepository;
+    }
+
+    public function handleFindEventById($id){
+        $event = $this->pdoEventRepository->FindEventById($id);
+        return $this->eventJsonView->convertEventArrayToJson($event);
+    }
+
+    public function handleGetAllEvents(){
+        $eventArray = $this->pdoEventRepository->FindAllEvents();
+        return $this-> eventJsonView->convertEventArrayToJson($eventArray);
     }
 }

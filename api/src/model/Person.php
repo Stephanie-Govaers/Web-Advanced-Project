@@ -9,8 +9,7 @@
 final class Person {
 
     private $id;
-    private $first_name;
-    private $last_name;
+    private $name;
 
     /**
      * @return mixed
@@ -31,34 +30,19 @@ final class Person {
     /**
      * @return mixed
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->first_name;
+        return $this->name;
     }
 
     /**
-     * @param mixed $first_name
+     * @param mixed $name
      */
-    public function setFirstName($first_name)
+    public function setName($name)
     {
-        $this->first_name = $first_name;
+        $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastName()
-    {
-        return $this->last_name;
-    }
-
-    /**
-     * @param mixed $last_name
-     */
-    public function setLastName($last_name)
-    {
-        $this->last_name = $last_name;
-    }
 
 
 }

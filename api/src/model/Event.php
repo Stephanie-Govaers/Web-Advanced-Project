@@ -14,7 +14,6 @@ final class Event{
     private $name;
     private $person;
 
-
     /**
      * @return mixed
      */
@@ -34,17 +33,17 @@ final class Event{
     /**
      * @return mixed
      */
-    public function getStartDate()
+    public function getStart()
     {
         return $this->start;
     }
 
     /**
-     * @param mixed $start_date
+     * @param mixed $start
      */
-    public function setStartDate($start_date)
+    public function setStart($start)
     {
-        $this->start = $start_date;
+        $this->start = $start;
     }
 
     /**
@@ -94,8 +93,6 @@ final class Event{
     {
         $this->person = $person;
     }
-
-
 
 
 

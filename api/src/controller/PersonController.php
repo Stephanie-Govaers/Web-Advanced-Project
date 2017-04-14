@@ -1,4 +1,4 @@
-<?php
+<?php namespace controller;
 
 /**
  * Created by PhpStorm.
@@ -7,13 +7,12 @@
  * Time: 14:49
  */
 class PersonController{
-    private $personJsonView, $pdoPersonRepository;
+    private $personJsonView;
+    private $pdoPersonRepository;
 
-    public function __construct($personJsonView, $pdoPersonRepository)
-    {
-
-        $this->personJsonView = new PersonJsonView($personJsonView);
-        $this->pdoPersonRepository = new PDOPersonRepository($pdoPersonRepository);
+    public function __construct($personJsonView, $pdoPersonRepository) {
+        $this->personJsonView = $personJsonView;
+        $this->pdoPersonRepository =$pdoPersonRepository;
     }
 
     public function handleFindPersonById($id){
