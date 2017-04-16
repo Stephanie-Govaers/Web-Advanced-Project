@@ -25,12 +25,15 @@ try {
     $pdo = new PDO("mysql:host=$hostname;dbname=$database", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION);
-
     // Setting up objects
     $personPDORepository = new PDOPersonRepository($pdo);
     $personJsonView = new PersonJsonView();
     $personController = new PersonController(
         $personJsonView, $personPDORepository);
+    $eventPDORepository = new \repository\PDOEventRepository($pdo);
+    $eventJSonView = new \view\EventJsonView();
+    $eventController = new \controller\EventController(
+        $eventJSonView, $eventPDORepository);
 
     // Setting up router
     $router = new AltoRouter();

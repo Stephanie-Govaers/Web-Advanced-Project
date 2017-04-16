@@ -10,25 +10,25 @@
 //GET person by ID
 $router->map('GET','/persons/[i:id]',
     function($id) use (&$personController) {
-        $personController->handleFindPersonById($id);
+        $personController->findPersonById($id);
     }
 );
 //GET all persons
 $router->map('GET', '/persons',
     function() use(&$personController) {
-        $personController->handleGetAllPersons();
+        $personController->findAllPersons();
     }
 );
 //GET event by ID
 $router->map('GET', '/events/[i:id]',
     function($id) use (&$eventController) {
-    $eventController->handleFindEventById($id);
+    $eventController->findEventById($id);
     }
 );
 //GET all events
 $router->map('GET', '/events',
     function() use (&$eventController){
-    $eventController->handleGetAllEvents();
+        print($eventController->findAllEvents());
     }
 );
 

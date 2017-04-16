@@ -14,13 +14,13 @@ class EventController{
         $this->pdoEventRepository = $pdoEventRepository;
     }
 
-    public function handleFindEventById($id){
-        $event = $this->pdoEventRepository->FindEventById($id);
+    public function findEventById($id){
+        $event = $this->pdoEventRepository->findEventById($id);
         return $this->eventJsonView->convertEventArrayToJson($event);
     }
 
-    public function handleGetAllEvents(){
-        $eventArray = $this->pdoEventRepository->FindAllEvents();
+    public function findAllEvents(){
+        $eventArray = $this->pdoEventRepository->findAllEvents();
         return $this-> eventJsonView->convertEventArrayToJson($eventArray);
     }
 

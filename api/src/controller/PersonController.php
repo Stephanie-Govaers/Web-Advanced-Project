@@ -15,13 +15,13 @@ class PersonController{
         $this->pdoPersonRepository =$pdoPersonRepository;
     }
 
-    public function handleFindPersonById($id){
-        $person = $this->pdoPersonRepository->FindPersonById($id);
+    public function findPersonById($id){
+        $person = $this->pdoPersonRepository->findPersonById($id);
         return $this->personJsonView->convertPersonArrayToJson($person);
     }
 
-    public function handleGetAllPersons(){
-        $personArray = $this->pdoPersonRepository->FindAllPersons();
+    public function findAllPersons(){
+        $personArray = $this->pdoPersonRepository->findAllPersons();
         return $this->personJsonView->convertPersonArrayToJson($personArray);
     }
 

@@ -1,5 +1,6 @@
 <?php namespace repository;
 use model\Event;
+use PDO;
 
 /**
  * Created by PhpStorm.
