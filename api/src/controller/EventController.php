@@ -23,4 +23,15 @@ class EventController{
         $eventArray = $this->pdoEventRepository->FindAllEvents();
         return $this-> eventJsonView->convertEventArrayToJson($eventArray);
     }
+
+    public function createEvent($eventArray){
+        $this->pdoEventRepository->createEvent($eventArray);
+    }
+    public function editEvent($eventArray){
+        $this->pdoEventRepository->editEvent($eventArray);
+    }
+
+    public function deleteEventById($id){
+        $this->pdoEventRepository->deleteEventById($id);
+    }
 }

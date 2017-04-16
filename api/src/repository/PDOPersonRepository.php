@@ -16,7 +16,7 @@ class PDOPersonRepository{
         $this->pdo = $pdo;
     }
 
-    public function FindPersonById($id){
+    public function findPersonById($id){
         $statement = $this->pdo->prepare('SELECT * FROM Persons WHERE ID = :id');
         $statement->bindParam(':id',$id,PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ class PDOPersonRepository{
         return $person;
     }
 
-    public function FindAllPersons(){
+    public function findAllPersons(){
         $personArray = array();
         $counter = 0;
         $statement = $this->pdo->query('SELECT * FROM Persons');
@@ -43,6 +43,27 @@ class PDOPersonRepository{
         }
         return $personArray;
 
+    }
+    public function createPerson($personArray){
+        $name = $personArray['name'];
+        $statement = $this->pdo->prepare("INSERT INTO Persons (name)
+        VALUES (:name)");
+        $statement->bindParam(':name', $name);
+        exec($statement);
+    }
+
+    public function editPerson($personArray){
+        $id = $personArray['id'];
+        $name = $personArray['name'];
+        $this->findPersonById($id);
+        $statement = $this->pdo->prepare("UPDATE Persons SET name= :name");
+        $statement->bindParam(':name', $name);
+        exec($statement);
+    }
+    public function deletePersonById($id){
+        $this->findPersonById($id);
+        $statement = $this->pdo->prepare("DELETE FROM Persons WHERE id= :id");
+        exec($statement);
     }
 
 }

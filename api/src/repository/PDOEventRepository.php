@@ -17,7 +17,7 @@ class PDOEventRepository
         $this->pdo = $pdo;
     }
 
-    public function FindEventById($id){
+    public function findEventById($id){
         $statement = $this->pdo->prepare('SELECT * FROM events WHERE ID = :id');
         $statement->bindParam(':id',$id,PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ class PDOEventRepository
         return $event;
     }
 
-    public function FindAllEvents(){
+    public function findAllEvents(){
         $eventArray = array();
         $counter = 0;
         $statement = $this->pdo->query('SELECT * FROM Events');
@@ -50,6 +50,41 @@ class PDOEventRepository
         }
         return $eventArray;
 
+    }
+
+    public function createEvent($eventArray){
+        $id = $eventArray['id'];
+        $name = $eventArray['name'];
+        $start = $eventArray['start'];
+        $end = $eventArray['end'];
+        $person = $eventArray['person'];
+        $statement = $this->pdo->prepare("INSERT INTO Events (name, start, end, person)
+        VALUES (:name, :start, :end, :person)");
+        $statement->bindParam(':name', $name);
+        $statement->bindParam(':start', $start);
+        $statement->bindParam(':end', $end);
+        $statement->bindParam(':person', $person);
+        exec($statement);
+    }
+
+    public function editEvent($eventArray){
+        $id = $eventArray['id'];
+        $name = $eventArray['name'];
+        $start = $eventArray['start'];
+        $end = $eventArray['end'];
+        $person = $eventArray['person'];
+        $this->findEventById($id);
+        $statement = $this->pdo->prepare("UPDATE Events SET name= :name, start= :start, end= :end, person= :person");
+        $statement->bindParam(':name', $name);
+        $statement->bindParam(':start', $start);
+        $statement->bindParam(':end', $end);
+        $statement->bindParam(':person', $person);
+        exec($statement);
+    }
+    public function deleteEventById($id){
+        $this->findEventById($id);
+        $statement = $this->pdo->prepare("DELETE FROM Events WHERE id= :id");
+        exec($statement);
     }
 
 }

@@ -24,4 +24,15 @@ class PersonController{
         $personArray = $this->pdoPersonRepository->FindAllPersons();
         return $this->personJsonView->convertPersonArrayToJson($personArray);
     }
+
+    public function createPerson($personArray){
+        $this->pdoPersonRepository->createPerson($personArray);
+    }
+    public function editPerson($personArray){
+        $this->pdoPersonRepository->editPerson($personArray);
+    }
+
+    public function deletePersonById($id){
+        $this->pdoPersonRepository->deletePersonById($id);
+    }
 }
