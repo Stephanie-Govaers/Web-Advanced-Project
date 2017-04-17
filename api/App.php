@@ -14,9 +14,9 @@ require "vendor/autoload.php";
  * Time: 14:30
  */
 
-$user = 'webproject_db';
-$password = 'user123';
-$database = 'webproject_db';
+$user = 'web62_db';
+$password = 'user_123';
+$database = 'web62_db';
 $hostname = '213.136.26.180';
 $pdo = null;
 

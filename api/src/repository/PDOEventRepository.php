@@ -44,7 +44,7 @@ class PDOEventRepository
     public function findAllEvents(){
         $eventArray = array();
         $counter = 0;
-        $statement = $this->pdo->query('SELECT * FROM Events');
+        $statement = $this->pdo->query('SELECT * FROM events');
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         foreach ($statement->fetch() as $event){
             $eventArray[$counter++] = $event;
@@ -59,7 +59,7 @@ class PDOEventRepository
         $start = $eventArray['start'];
         $end = $eventArray['end'];
         $person = $eventArray['person'];
-        $statement = $this->pdo->prepare("INSERT INTO Events (name, start, end, person)
+        $statement = $this->pdo->prepare("INSERT INTO events (name, start, end, person)
         VALUES (:name, :start, :end, :person)");
         $statement->bindParam(':name', $name);
         $statement->bindParam(':start', $start);
@@ -75,7 +75,7 @@ class PDOEventRepository
         $end = $eventArray['end'];
         $person = $eventArray['person'];
         $this->findEventById($id);
-        $statement = $this->pdo->prepare("UPDATE Events SET name= :name, start= :start, end= :end, person= :person");
+        $statement = $this->pdo->prepare("UPDATE events SET name= :name, start= :start, end= :end, person= :person");
         $statement->bindParam(':name', $name);
         $statement->bindParam(':start', $start);
         $statement->bindParam(':end', $end);
@@ -84,7 +84,7 @@ class PDOEventRepository
     }
     public function deleteEventById($id){
         $this->findEventById($id);
-        $statement = $this->pdo->prepare("DELETE FROM Events WHERE id= :id");
+        $statement = $this->pdo->prepare("DELETE FROM events WHERE id= :id");
         exec($statement);
     }
 
