@@ -32,6 +32,13 @@ $router->map('GET', '/events',
     }
 );
 
+//GET events by person
+$router->map('GET', '/events/person/[i:id]',
+    function ($id) use (&$eventController, &$personController){
+    $person = $personController->findPersonById($id);
+    $eventController->findEventsByPerson($person);
+    });
+
 //DELETE event by ID
 $router->map('DELETE','/events/[i:id]',
     function ($id) use (&$eventController){

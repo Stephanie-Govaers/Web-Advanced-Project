@@ -55,14 +55,12 @@ class PDOEventRepository
 
 
     public function findEventsByPerson($person){
-    $eventArray = array();
-        $counter = 0;
+        $person = json_decode($person);
+
         $statement = $this->pdo->query('SELECT * FROM events WHERE person = :person');
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-        $statement->bindParam(':person', $person,PDO::PARAM_INT);
-        foreach ($statement->fetchAll() as $event){
-            $eventArray[$counter++] = $event;
-        }
+        $statement->bindParam(':person', $person['id'], PDO::PARAM_INT);
+        $statement->execute();
+        $eventArray = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $eventArray;
     }
 
