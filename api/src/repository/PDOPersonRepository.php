@@ -17,30 +17,24 @@ class PDOPersonRepository{
     }
 
     public function findPersonById($id){
+        $person = null;
+
         $statement = $this->pdo->prepare('SELECT * FROM persons WHERE ID = :id');
         $statement->bindParam(':id',$id,PDO::PARAM_INT);
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
-        $record=$statement->fetch();
+        $record=$statement->fetch(PDO::FETCH_ASSOC);
         // If the person was found
         if ($record != false) {
-            $id = $record['id'];
-            $name = $record['name'];
             $person = new Person();
-            $person->setId($id);
-            $person->setName($name);
+            $person->setId($record['id']);
+            $person->setName($record['name']);
         }
         return $person;
     }
 
     public function findAllPersons(){
-        $personArray = array();
-        $counter = 0;
         $statement = $this->pdo->query('SELECT * FROM persons');
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-        foreach ($statement->fetch() as $person){
-            $personArray[$counter++] = $person;
-        }
+        $personArray = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $personArray;
 
     }

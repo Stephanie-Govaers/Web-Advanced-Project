@@ -46,7 +46,7 @@ class PDOEventRepository
         $counter = 0;
         $statement = $this->pdo->query('SELECT * FROM events');
         $statement->setFetchMode(PDO::FETCH_ASSOC);
-        foreach ($statement->fetch() as $event){
+        foreach ($statement->fetchAll() as $event){
             $eventArray[$counter++] = $event;
         }
         return $eventArray;
