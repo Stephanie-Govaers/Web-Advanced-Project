@@ -5,7 +5,7 @@
     <body>
     <?php echo form_open('personcontroller/editPerson'); ?>
         <select name="id">
-            <?php foreach ($persons as $person){
+            <?php foreach ($persons as $person){ // hij gebruikt de $data['persons'] die hij in de Personcontroller::index() heeft meegekregen.
                 echo '<option value="'.$person['id'].'"">'.$person['name'].'</option>';
             }?>
         </select>
