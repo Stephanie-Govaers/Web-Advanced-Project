@@ -19,6 +19,7 @@ class PersonModel extends CI_Model{
             'name' => $this->input->post('name')
         );
 
-        return $this->db->insert('persons', $data);
+        $this->db->where('id',$this->input->post('id'));
+        return $this->db->update('persons', $data);
     }
 }
