@@ -37,7 +37,7 @@ try {
 
     // Setting up router
     $router = new AltoRouter();
-    $router->setBasePath('/~user/api');
+    $router->setBasePath('/~user/Web-Advanced-Project/api');
 
     // Include the defined api routes
     include('routes.php');
