@@ -56,7 +56,6 @@ class PDOEventRepository
 
     public function findEventsByPerson($person){
         $person = json_decode($person);
-
         $statement = $this->pdo->query('SELECT * FROM events WHERE person = :person');
         $statement->bindParam(':person', $person['id'], PDO::PARAM_INT);
         $statement->execute();
