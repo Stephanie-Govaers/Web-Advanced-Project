@@ -5,13 +5,18 @@
  * Date: 03/05/2017
  * Time: 09:51
  */
+
+
+
 use controller\EventController;
 use repository\PDOEventRepository;
 use model\Event;
 use model\Person;
 use view\EventJsonView;
 
-class EventControllerTest extends PHPUNIT_Framework_TestCase{
+
+class EventControllerTest extends PHPUnit_Framework_TestCase {
+
     public function setUp(){
         $view = new EventJsonView();
         $repository = new PDOEventRepository();

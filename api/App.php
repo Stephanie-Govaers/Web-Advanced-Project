@@ -4,7 +4,7 @@ use controller\PersonController;
 use repository\PDOPersonRepository;
 use view\PersonJsonView;
 
-require "vendor/autoload.php";
+require "api/vendor/autoload.php";
 
 
 /**
@@ -19,6 +19,9 @@ $password = 'user_123';
 $database = 'web62_db';
 $hostname = '213.136.26.180';
 $pdo = null;
+
+
+
 
 try {
     // Setting up pdo

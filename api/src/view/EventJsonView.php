@@ -8,6 +8,10 @@
  */
 class EventJsonView
 {
+    public function __construct()
+    {
+        
+    }
 
     public function convertEventArrayToJson($arr){
         return $this->convert($arr);
