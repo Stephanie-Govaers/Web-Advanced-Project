@@ -19,48 +19,20 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
-    <script src="<?php echo base_url();?>assets/js/jquery-3.2.1.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-
-            $("#loginButton").click(function(){
-
-                $.ajax({
-                    url: '<?php echo base_url();?>login/doLogin', v
-                    type: 'POST',
-                    data: {
-                        username: $("#username").val(),
-                        password: $("#password").val(),
-                    },
-                    success: function (data) {
-
-                        if (data) {
-                            alert("Yes, we are logged in");
-                        } else if (!data) {
-                            alert("Sorry, wrong login info");
-                        } else {
-                            alert(data);
-                        }
-                    }
-                })
-            })
-
-        });
-
-    </script>
-
-
 </head>
 
 <body>
 <div class="login">
     <h1>Login</h1>
-    <form method="post" id="formLogin" >
-        <input id="username" name="u" placeholder="Username" required="required"/>
-        <input id="password" type="password" name="p" placeholder="Password" required="required"/>
-        <button type="submit" id="loginButton" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    <?php echo validation_errors(); ?>
+    <?php echo form_open('verifylogin'); ?>
+    <label for="username">Username:</label>
+    <input type="text" size="20" id="username" name="username"/>
+    <br/>
+    <label for="password">Password:</label>
+    <input type="password" size="20" id="password" name="password"/>
+    <br/>
+    <input type="submit" value="Login"/>
     </form>
 </div>
 
