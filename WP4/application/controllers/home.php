@@ -18,14 +18,19 @@ class Home extends CI_Controller
 
     function index()
     {
-        if($this->session->userdata('logged_in'))
-        {
+     $this->home();
+    }
+
+    function home(){
+        if($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
             //$data['username'] = $session_data['username'];
 
             $data['events'] = $this->eventModel->getEvents();
 
+            $this->load->view('header');
             $this->load->view('home', $data);
+            $this->load->view('footer');
         }
         else
         {

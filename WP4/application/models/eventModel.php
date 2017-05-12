@@ -46,6 +46,18 @@ class eventModel extends CI_Model {
 
         $this->db->query("SET FOREIGN_KEY_CHECKS = 1");
     }
+
+    public function getRowById($id)
+    {
+        $data['events'] = $this->db->get_where('events', array('id =' => $id))->result_array();
+
+        return $data;
+    }
+
+    public function editEvents($id, $data){
+        $this->db->where('Id', $id);
+        $this->db->update('events', $data);
+    }
 }
 
 

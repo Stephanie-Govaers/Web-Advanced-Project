@@ -36,6 +36,27 @@ class Event extends CI_Controller
         $this->load->view('home', $data);
     }
 
+    function editPage($id){
+        $events = $this->eventModel->getRowById($id);
+
+        $this->load->view('header');
+        $this->load->view('editEvent', $events);
+        $this->load->view('footer');
+    }
+
+
+    public function editEvent($id){
+        $data = array(
+            'name' => $this->input->post('Name'),
+            'start' =>  $this->input->post('StartDate'),
+            'end' => $this->input->post('EndDate'),
+            'person' => $this->input->post('Persons')
+        );
+
+        $this->eventModel->editEvents($id, $data);
+
+        redirect('home', 'refresh');
+    }
 
 
 }
