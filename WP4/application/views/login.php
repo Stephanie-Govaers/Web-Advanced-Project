@@ -13,9 +13,11 @@
     <meta charset="UTF-8">
     <title>Login Form</title>
 
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css" type="text/css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css" type="text/css">
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 

@@ -21,7 +21,7 @@ class Event extends CI_Controller
     {
 
 
-        $this->nieuwMateriaalModel->deleteRow($id);
+        $this->eventModel->deleteEvent($id);
 
         $data['events'] = $this->eventModel->getEvents();
 

@@ -31,6 +31,9 @@ class eventModel extends CI_Model {
         $endDate = $this->input->post('EndDate');
         $person = $this->input->post('Persons');
 
+        $this->db->query("SET FOREIGN_KEY_CHECKS = 0");
+
+       // echo "<script type='text/javascript'>alert($person);</script>";
 
         $data = array(
             'name' => $name,
@@ -40,6 +43,8 @@ class eventModel extends CI_Model {
         );
 
         $this->db->insert('events', $data);
+
+        $this->db->query("SET FOREIGN_KEY_CHECKS = 1");
     }
 }
 

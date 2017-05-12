@@ -78,7 +78,7 @@ p {
     margin-top: 50  px;
 }
 .bg-primary {
-    background-color: #C55A11;
+    background-color: #c55a11;
 }
 
 .bg-dark {
@@ -396,8 +396,8 @@ header .header-content .header-content-inner p {
 
 .btn-primary {
     color: #fff;
-    background-color: #3c763d;
-    border-color: #3c763d;
+    background-color: #C55A11;
+    border-color: #C55A11;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s

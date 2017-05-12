@@ -126,7 +126,7 @@
                     ?>
                     <tr>
                         <td class="col-md-2"><?php echo $event['name'] ?></td>
-                        <td class="col-md-2"><?php echo $event['start'] ?></td>
+                        <td class="col-md-2"><?php echo $event['start']?></td>
                         <td class="col-md-2"><?php echo $event['end'] ?></td>
                         <td class="col-md-2"><?php echo $event['person'] ?></td>
                         <td class="col-md-2"><a target="_self" href="#  " class="btn btn-warning">Aanpassen</a></td>
