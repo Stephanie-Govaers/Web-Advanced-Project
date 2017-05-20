@@ -54,17 +54,16 @@ class PDOEventRepository
     }
 
 
-    public function findEventsByPerson($person){
-        $person = json_decode($person);
-        $statement = $this->pdo->query('SELECT * FROM events WHERE person = :person');
-        $statement->bindParam(':person', $person['id'], PDO::PARAM_INT);
+    public function findEventsByPerson($id){
+        $statement = $this->pdo->prepare("SELECT * FROM events WHERE person = :id");
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $eventArray=$statement->fetchAll();
         $statement->execute();
-        $eventArray = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $eventArray;
     }
 
     public function createEvent($eventArray){
-        $id = $eventArray['id'];
         $name = $eventArray['name'];
         $start = $eventArray['start'];
         $end = $eventArray['end'];

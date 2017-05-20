@@ -24,9 +24,9 @@ class EventController{
         return $this-> eventJsonView->convertEventArrayToJson($eventArray);
     }
 
-    public function findEventsByPerson($person){
-        $eventArray = $this->pdoEventRepository->findEventsByPerson($person);
-        return $this-> eventJsonView->convertEventArrayToJson($eventArray);
+    public function findEventsByPerson($id){
+        $events = $this->pdoEventRepository->findAllEventsByPerson($id);
+        return $this->eventJsonView->convertEventArrayToJson($events);
     }
 
     public function createEvent($eventArray){
