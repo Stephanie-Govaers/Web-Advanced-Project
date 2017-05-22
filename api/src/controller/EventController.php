@@ -25,10 +25,18 @@ class EventController{
     }
 
     public function findEventsByPerson($id){
-        $events = $this->pdoEventRepository->findAllEventsByPerson($id);
+        $events = $this->pdoEventRepository->findEventsByPerson($id);
         return $this->eventJsonView->convertEventArrayToJson($events);
     }
 
+    public function findEventsByDateInterval($start, $end){
+        $events = $this->pdoEventRepository->findEventsByDateInterval($start, $end);
+            return $this->eventJsonView->convertEventArrayToJson($events);
+        }
+    public function findEventsByPersonAndDateInterval($id, $start, $end){
+        $events = $this->pdoEventRepository->findEventsByPersonAndDateInterval($id,$start,$end);
+        return $this->eventJsonView->convertEventArrayToJson($events);
+    }
     public function createEvent($eventArray){
         $this->pdoEventRepository->createEvent($eventArray);
     }

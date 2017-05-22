@@ -55,11 +55,41 @@ class PDOEventRepository
 
 
     public function findEventsByPerson($id){
-        $statement = $this->pdo->prepare("SELECT * FROM events WHERE person = :id");
-        $statement->bindParam(":id", $id, PDO::PARAM_INT);
+        $eventArray = array();
+        $counter = 0;
+        $statement = $this->pdo->query('SELECT * FROM events WHERE person = :id');
+        $statement->bindParam(':id',$id,PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
-        $eventArray=$statement->fetchAll();
-        $statement->execute();
+        foreach ($statement->fetchAll() as $event){
+            $eventArray[$counter++] = $event;
+        }
+        return $eventArray;
+    }
+
+    public function findEventsByDateInterval($start, $end){
+        $eventArray = array();
+        $counter = 0;
+        $statement = $this->pdo->query('SELECT * FROM events WHERE start BETWEEN = :start AND :end');
+        $statement->bindParam(':start',$start);
+        $statement->bindParam(':end',$end);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        foreach ($statement->fetchAll() as $event){
+            $eventArray[$counter++] = $event;
+        }
+        return $eventArray;
+    }
+
+    public function findEventsByPersonAndDateInterval($id, $start, $end){
+        $eventArray = array();
+        $counter = 0;
+        $statement = $this->pdo->query('SELECT * FROM events WHERE start BETWEEN = :start AND :end AND person = :id');
+        $statement->bindParam(':id',$id,PDO::PARAM_INT);
+        $statement->bindParam(':start',$start);
+        $statement->bindParam(':end',$end);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        foreach ($statement->fetchAll() as $event){
+            $eventArray[$counter++] = $event;
+        }
         return $eventArray;
     }
 
