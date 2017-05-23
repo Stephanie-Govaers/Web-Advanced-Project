@@ -14,10 +14,13 @@ require "api/vendor/autoload.php";
  * Time: 14:30
  */
 
-$user = 'web62_db';
-$password = 'user_123';
-$database = 'web62_db';
-$hostname = '213.136.26.180';
+$dbconfig = file_get_contents('DBconfig.json');
+$dbconfig = json_decode($dbconfig);
+
+$user = $dbconfig->user;
+$password = $dbconfig->password;
+$database = $dbconfig->database;
+$hostname = $dbconfig->hostname;
 $pdo = null;
 
 
