@@ -39,7 +39,7 @@ $router->map('GET', '/events/person/[i:id]',
     });
 
 //GET events by date interval
-$router->map('GET', '/events/?from=...&until=...',
+$router->map('GET', '/events/',
   function() use (&$eventController){
     $start = $_GET['from'];
     $end = $_GET['until'];
@@ -47,10 +47,8 @@ $router->map('GET', '/events/?from=...&until=...',
   });
 
 //GET events by person and date interval
-$router->map('GET', '/person/[i:id]/events/?from=...&until=...',
-    function($id) use (&$eventController){
-        $start = $_GET['from'];
-        $end = $_GET['until'];
+$router->map('GET', '/person/[i:id]/events/',
+    function($id, $start, $end) use (&$eventController){
         print($eventController->findEventsByPersonAndDateInterval($id, $start, $end));
     });
 //DELETE event by ID

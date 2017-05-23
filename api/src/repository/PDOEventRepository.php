@@ -1,5 +1,6 @@
 <?php namespace repository;
 use model\Event;
+use \DateTime;
 use PDO;
 
 /**
@@ -67,11 +68,18 @@ class PDOEventRepository
     }
 
     public function findEventsByDateInterval($start, $end){
+
+        $start = new DateTime($start);
+        $end = new DateTime($end);
+
+        $start->format('Y-m-d%20H:i:s');
+        $end->format('Y-m-d%20H:i:s');
+
         $eventArray = array();
         $counter = 0;
         $statement = $this->pdo->query('SELECT * FROM events WHERE start BETWEEN = :start AND :end');
-        $statement->bindParam(':start',$start);
-        $statement->bindParam(':end',$end);
+        $statement->bindParam(':start',$start,PDO::PARAM_STR);
+        $statement->bindParam(':end',$end,PDO::PARAM_STR);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         foreach ($statement->fetchAll() as $event){
             $eventArray[$counter++] = $event;
@@ -80,12 +88,19 @@ class PDOEventRepository
     }
 
     public function findEventsByPersonAndDateInterval($id, $start, $end){
+
+        $start = new DateTime($start);
+        $end = new DateTime($end);
+
+        $start->format('Y-m-d%20H:i:s');
+        $end->format('Y-m-d%20H:i:s');
+
         $eventArray = array();
         $counter = 0;
         $statement = $this->pdo->query('SELECT * FROM events WHERE start BETWEEN = :start AND :end AND person = :id');
         $statement->bindParam(':id',$id,PDO::PARAM_INT);
-        $statement->bindParam(':start',$start);
-        $statement->bindParam(':end',$end);
+        $statement->bindParam(':start',$start,PDO::PARAM_STR);
+        $statement->bindParam(':end',$end,PDO::PARAM_STR);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         foreach ($statement->fetchAll() as $event){
             $eventArray[$counter++] = $event;

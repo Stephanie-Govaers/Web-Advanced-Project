@@ -4,7 +4,7 @@ use controller\PersonController;
 use repository\PDOPersonRepository;
 use view\PersonJsonView;
 
-require "api/vendor/autoload.php";
+require "vendor/autoload.php";
 
 
 /**
@@ -43,7 +43,7 @@ try {
 
     // Setting up router
     $router = new AltoRouter();
-    $router->setBasePath('/~user/Web-Advanced-Project/api');
+    $router->setBasePath('/~user/api');
 
     // Include the defined api routes
     include('routes.php');
